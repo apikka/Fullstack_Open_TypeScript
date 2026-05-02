@@ -27,4 +27,7 @@ const calculateExercises = (data : Array<number>, target : number): ExerciseData
     return res
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2))
+const target : number = Number(process.argv[2])
+const data : Array<Number> = Array(process.argv[3])
+
+console.log(calculateExercises(data, target))
