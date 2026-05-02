@@ -28,6 +28,6 @@ const calculateExercises = (data : Array<number>, target : number): ExerciseData
 }
 
 const target : number = Number(process.argv[2])
-const data : Array<Number> = Array(process.argv[3])
+const data : Array<number> = Array(Number(process.argv[3]))
 
 console.log(calculateExercises(data, target))
