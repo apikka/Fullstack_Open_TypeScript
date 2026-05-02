@@ -30,6 +30,8 @@ const calculateExercises = (data : Array<number>, target : number): ExerciseResu
     return res
 }
 
+// First cmd arg is the target and then all rest are exercise data, for example
+// 3 1 2 3 4 5 -> target is 3 hours and realized exercises are 1, 2, 3, 4 and 5 hours
 try {
     const target : number = Number(process.argv[2])
     const data : Array<number> = parseArgumentsToArray(process.argv.slice(3))
