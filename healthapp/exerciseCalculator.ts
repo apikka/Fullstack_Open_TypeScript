@@ -1,4 +1,6 @@
-interface ExerciseData {
+import { parseArgumentsToArray } from './utils.ts'
+
+interface ExerciseResults {
     periodLength: number;
     trainingDays: number;
     success: boolean;
@@ -8,14 +10,15 @@ interface ExerciseData {
     average: number;
 }
 
-const calculateExercises = (data : Array<number>, target : number): ExerciseData => {
+
+const calculateExercises = (data : Array<number>, target : number): ExerciseResults => {
     const averageLength = data.reduce((e1,e2) => e1+e2) / data.length
     const rating = averageLength / target >= 0.99 ? 3 : (averageLength / target >= 0.7 ? 2 : 1)
     // if average is at least 
     // - 50% of target then rating 1
     // - 70% of target then rating 2
     // - 99% of target then rating 3
-    const res: ExerciseData = {
+    const res: ExerciseResults = {
         periodLength: data.length,
         trainingDays: data.filter(e => e > 0).length,
         success: data.filter(e => e >= target).length == data.length ? true : false,
@@ -27,7 +30,12 @@ const calculateExercises = (data : Array<number>, target : number): ExerciseData
     return res
 }
 
-const target : number = Number(process.argv[2])
-const data : Array<number> = Array(Number(process.argv[3]))
-
-console.log(calculateExercises(data, target))
+try {
+    const target : number = Number(process.argv[2])
+    const data : Array<number> = parseArgumentsToArray(process.argv.slice(3))
+    console.log(calculateExercises(data, target))
+} catch (error : unknown) {
+    if (error instanceof Error) {
+        console.log(error.message)
+    }
+}

@@ -1,3 +1,5 @@
+import { validateNumber } from "./utils.ts"
+
 const calculateBmi = (height : number, weight : number): string => {
     const bmi = weight / (height * 1/100) ** 2
     
@@ -9,7 +11,15 @@ const calculateBmi = (height : number, weight : number): string => {
     return 'Overweight'
 }
 
-const h: number = Number(process.argv[2])
-const w: number = Number(process.argv[3])
 
-console.log(calculateBmi(h, w))
+try {
+    const h: number = validateNumber(Number(process.argv[2]))
+    const w: number = validateNumber(Number(process.argv[3]))
+    console.log(calculateBmi(h, w))
+} catch (error : unknown) {
+    if (error instanceof Error) {
+        console.log(error.message)
+    }
+}
+
+
