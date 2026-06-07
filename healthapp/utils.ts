@@ -7,6 +7,16 @@ export const validateNumber = (x : number): number => {
     }
 }
 
+export const validateQuery = (query : {[keys : string] : any}, expected : object): object => {
+    for (const key in query) {
+        if (isNaN(query[key])) {
+            console.log(key)
+            return {'error' : `parameter ${key} is invalid`}
+        }
+    }
+    return expected
+}
+
 export const parseArgumentsToArray = (args : string[]): Array<number> => {
     const lenArgs = args.length
     const res: Array<number> = []
