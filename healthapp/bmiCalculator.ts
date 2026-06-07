@@ -1,6 +1,4 @@
-import { validateNumber } from "./utils.ts"
-
-const calculateBmi = (height : number, weight : number): string => {
+export const calculateBmi = (height : number, weight : number): string => {
     const bmi = weight / (height * 1/100) ** 2
     
     if (bmi < 18.5) {
@@ -11,7 +9,7 @@ const calculateBmi = (height : number, weight : number): string => {
     return 'Overweight'
 }
 
-
+/*
 try {
     const h: number = validateNumber(Number(process.argv[2]))
     const w: number = validateNumber(Number(process.argv[3]))
@@ -21,5 +19,7 @@ try {
         console.log(error.message)
     }
 }
+*/
 
+export default 'default'
 
